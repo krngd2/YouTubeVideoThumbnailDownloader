@@ -11,9 +11,9 @@ import getVideoId from 'get-video-id';
 @Injectable()
 export class ServiceProvider {
 
-  key:string = 'AIzaSyDnEkUL7SWJ8Ljh17TM78SGU29xK2x73gU';
+  key:string = 'Enter Your Youtube Api Key';
   constructor( private http:Http) {
-    this.key = 'AIzaSyDnEkUL7SWJ8Ljh17TM78SGU29xK2x73gU';
+    this.key = 'Enter Your Youtube Api Key';
     console.log('Hello ServiceProvider Provider');
   }
   getVideosDetails(url){
