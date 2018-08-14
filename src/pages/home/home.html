@@ -1,14 +1,45 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Youtube Video Thumbnail Downloader
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-item >
+    <ion-label color="primary" floating>Enter URL here</ion-label>
+    <ion-input type="url"  #url></ion-input>
+  </ion-item>
+  <ion-item>
+      <button full ion-button primary (click)='checkURL(url.value)'>SUBMIT</button>
+  </ion-item>
+  <div *ngIf="data">
+    <div *ngFor="let item of data.items">
+      <h4 padding *ngIf="title">{{title}}</h4>
+      <p pading >Click on the Image to Open image in browser, then long press on the image to Download or directly share the url</p>
+      <ion-list>
+          <ion-item (click)="downloadImage(item.snippet.thumbnails.default.url)"> 
+            <p>{{item.snippet.thumbnails.default.height}}x{{item.snippet.thumbnails.default.width}}</p>
+            <img src='{{item.snippet.thumbnails.default.url}}'>
+          </ion-item>
+          <ion-item (click)="downloadImage(item.snippet.thumbnails.medium.url)">
+            <p>{{item.snippet.thumbnails.medium.height}}x{{item.snippet.thumbnails.medium.width}}</p>
+            <img src='{{item.snippet.thumbnails.medium.url}}'>
+          </ion-item>
+          <ion-item (click)="downloadImage(item.snippet.thumbnails.high.url)">
+            <p>{{item.snippet.thumbnails.high.height}}x{{item.snippet.thumbnails.high.width}}</p>
+            <img src='{{item.snippet.thumbnails.high.url}}'>
+          </ion-item> 
+          <ion-item (click)="downloadImage(item.snippet.thumbnails.standard.url)">
+            <p>{{item.snippet.thumbnails.standard.height}}x{{item.snippet.thumbnails.standard.width}}</p>
+            <img src='{{item.snippet.thumbnails.standard.url}}'>
+          </ion-item>
+          <ion-item *ngIf="item.snippet.thumbnails.maxres" (click)="downloadImage(item.snippet.thumbnails.maxres.url)"> 
+            <p>{{item.snippet.thumbnails.maxres.height}}x{{item.snippet.thumbnails.maxres.width}}</p>
+            <img src='{{item.snippet.thumbnails.maxres.url}}'>
+          </ion-item>
+      </ion-list> 
+    </div>
+  </div>
 </ion-content>
